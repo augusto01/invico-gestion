@@ -1,0 +1,123 @@
+/* Contenedor Principal */
+.dashboard-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  color: #333;
+  background-color: #f8fafc;
+  min-height: 100vh;
+}
+
+/* Encabezado */
+.header {
+  border-bottom: 2px solid #0055a4;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+}
+
+.header h1 {
+  color: #0055a4;
+  font-size: 1.8rem;
+  margin: 0;
+}
+
+.badge-version {
+  font-size: 0.8rem;
+  background: #e0e7ff;
+  color: #4338ca;
+  padding: 4px 8px;
+  border-radius: 4px;
+  vertical-align: middle;
+}
+
+/* Layout de dos columnas */
+.main-layout {
+  display: grid;
+  grid-template-columns: 1fr 350px;
+  gap: 2rem;
+}
+
+/* Tabla de Expedientes */
+.table-container {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  background: #f1f5f9;
+  text-align: left;
+  padding: 12px 16px;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  color: #64748b;
+}
+
+td {
+  padding: 14px 16px;
+  border-bottom: 1px solid #f1f5f9;
+  transition: background 0.2s;
+}
+
+tr:hover td {
+  background: #f0f7ff;
+  cursor: pointer;
+}
+
+.id-cell {
+  color: #94a3b8;
+  font-weight: 600;
+  width: 50px;
+}
+
+/* Panel de Detalle (Sidebar) */
+.detail-panel {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border-top: 4px solid #0055a4;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  height: fit-content;
+  position: sticky;
+  top: 20px;
+}
+
+.detail-panel h3 {
+  margin-top: 0;
+  color: #1e293b;
+}
+
+.detail-content p {
+  line-height: 1.6;
+  color: #475569;
+}
+
+.btn-close {
+  width: 100%;
+  background: #ef4444;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  margin-top: 1rem;
+}
+
+.btn-close:hover {
+  background: #dc2626;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .main-layout {
+    grid-template-columns: 1fr;
+  }
+}
