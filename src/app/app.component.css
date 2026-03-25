@@ -1,154 +1,115 @@
-/* Contenedor Principal */
-.dashboard-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: #2d3e2d;
-  background-color: #f4f7f4; /* Blanco con tinte verdoso muy sutil */
-  min-height: 100vh;
+:root {
+  --invico-blue: #003366;
+  --invico-blue-dark: #002244;
+  --invico-green: #28a745;
+  --invico-bg: #eef2f5;       /* Gris azulado más oscuro para el fondo */
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+  --white: #ffffff;
+  --glass: rgba(255, 255, 255, 0.9);
 }
 
-/* Encabezado */
+.dashboard-container {
+  font-family: 'Inter', system-ui, sans-serif;
+  background-color: var(--invico-bg);
+  min-height: 100vh;
+  color: var(--text-main);
+}
+
+/* --- HEADER CON PERSONALIDAD --- */
 .header {
-  border-bottom: 3px solid #2e7d32; /* Verde INVICO */
-  margin-bottom: 2rem;
-  padding-bottom: 1rem;
+  background: linear-gradient(135deg, var(--invico-blue) 0%, var(--invico-blue-dark) 100%);
+  padding: 1.5rem 5%;
+  border-bottom: 5px solid var(--invico-green);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  color: black; 
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
-.header h1 {
-  color: #1b5e20;
-  font-size: 1.8rem;
+.logo-invico { 
+  height: 55px; 
+}
+
+.header-title h1 {
+  font-size: 1.5rem;
+  font-weight: 800;
   margin: 0;
-  letter-spacing: -0.5px;
+  letter-spacing: -0.02em;
+  color: var(--white);
 }
 
-.badge-version {
-  font-size: 0.8rem;
-  background: #c8e6c9;
-  color: #1b5e20;
-  padding: 4px 12px;
-  border-radius: 20px;
-  font-weight: bold;
-  text-transform: uppercase;
-}
-
-/* Layout de dos columnas */
-.main-layout {
+/* --- KPIs CON COLORES VIVOS --- */
+.stats-grid {
   display: grid;
-  grid-template-columns: 1fr 380px;
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem 5%;
 }
 
-/* Tabla de Expedientes */
-.table-container {
-  background: white;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-  border: 1px solid #e0eadd;
+.data-card {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 1.5rem;
+  border: none;
+  position: relative;
   overflow: hidden;
+  box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05);
+  transition: transform 0.2s;
 }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
+/* KPI 1: Azul */
+.data-card.kpi-total {
+  background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+  border-bottom: 4px solid #0284c7;
 }
 
-th {
-  background: #f1f8f1;
-  text-align: left;
-  padding: 15px;
+/* KPI 2: Verde */
+.data-card.kpi-geo {
+  background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+  border-bottom: 4px solid #16a34a;
+}
+
+.stat-label {
   font-size: 0.75rem;
+  font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  color: #388e3c;
-  border-bottom: 2px solid #c8e6c9;
-}
-
-td {
-  padding: 15px;
-  border-bottom: 1px solid #f0f4f0;
-  transition: all 0.2s ease;
-}
-
-tr:hover td {
-  background: #f9fff9;
-  cursor: pointer;
-}
-
-.id-cell {
-  color: #2e7d32;
-  font-weight: bold;
-  width: 60px;
-}
-
-/* Panel de Detalle (Sidebar) */
-.detail-panel {
-  background: white;
-  padding: 2rem;
-  border-radius: 10px;
-  border-top: 5px solid #2e7d32;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-  height: fit-content;
-  position: sticky;
-  top: 20px;
-}
-
-.detail-panel h3 {
-  margin-top: 0;
-  color: #1b5e20;
-  font-size: 1.4rem;
-  border-bottom: 1px solid #f0f4f0;
-  padding-bottom: 10px;
-}
-
-.detail-content {
-  margin: 1.5rem 0;
-}
-
-.detail-content p {
-  line-height: 1.6;
-  color: #445544;
-  margin-bottom: 12px;
-}
-
-.detail-content strong {
-  color: #1b5e20;
+  letter-spacing: 0.05em;
+  color: var(--invico-blue);
+  margin-bottom: 10px;
   display: block;
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  margin-bottom: 4px;
 }
 
-/* Botón de acción */
-.btn-close {
-  width: 100%;
-  background: #ffffff;
-  color: #2e7d32;
-  border: 2px solid #2e7d32;
-  padding: 12px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: all 0.3s ease;
+.stat-value {
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: var(--invico-blue-dark);
 }
 
-.btn-close:hover {
-  background: #2e7d32;
-  color: white;
+/* --- TABLA Y DETALLES --- */
+.table-container {
+  background: var(--white);
+  border-radius: 16px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
 }
 
-/* Responsive */
-@media (max-width: 900px) {
-  .main-layout {
-    grid-template-columns: 1fr;
-  }
-  
-  .detail-panel {
-    position: relative;
-    top: 0;
-  }
+.selected-row td {
+  background-color: #f0fdf4 !important; /* Verde muy suave al seleccionar */
+  border-left: 6px solid var(--invico-green) !important;
+}
+
+.detail-panel {
+  background: var(--white);
+  border-radius: 20px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+  padding: 2rem;
+}
+
+.report-box {
+  background: #f1f5f9; /* Gris oscuro para el reporte, descansa la vista */
+  border: 1px solid #e2e8f0;
+  color: #334155;
 }

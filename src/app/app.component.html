@@ -1,58 +1,89 @@
 <div class="dashboard-container">
+  
   <header class="header">
-    <h1>Portal de Obras - INVICO</h1>
-    <span class="badge-version">Angular v15.2 - Stable</span>
+    <div class="brand-wrapper">
+      <div class="logo-container">
+        <img src="assets/INVICO-logo.svg" alt="INVICO Corrientes" class="logo-invico">
+      </div>
+      <div class="header-separator"></div>
+      <div class="header-title">
+        <h1>Gestión de Obras</h1>
+        <span class="header-subtitle">INSTITUTO DE VIVIENDA DE CORRIENTES</span>
+      </div>
+    </div>
+    <div class="status-badge">
+      <span class="status-dot"></span> 
+      SISTEMA INTRANET V15.2
+    </div>
   </header>
 
-  <div style="margin-bottom: 25px;">
-    <input 
-      type="text" 
-      class="search-box" 
-      [(ngModel)]="searchTerm" 
-      (input)="filtrar()"
-      placeholder="🔍 Buscar por nombre de obra, barrio o expediente..."
-      style="width: 100%; padding: 15px; border: 2px solid #c8e6c9; border-radius: 8px; font-size: 1rem; outline: none;"
-    >
+  <section class="search-area" style="background: var(--invico-blue-dark); padding: 2.5rem 5%;">
+    <div style="position: relative; max-width: 800px;">
+      <span style="position: absolute; left: 20px; top: 18px; color: var(--text-muted);">🔍</span>
+      <input 
+        type="text" 
+        class="search-box" 
+        [(ngModel)]="searchTerm" 
+        (ngModelChange)="filtrar()" 
+        placeholder="Buscar expediente o nombre del proyecto..."
+        style="padding-left: 55px; width: 100%; height: 55px; border-radius: 15px; border: none; font-size: 1rem; box-shadow: 0 10px 15px rgba(0,0,0,0.2);"
+      >
+    </div>
+  </section>
+
+  <div class="stats-grid">
+    <div class="data-card kpi-total">
+      <span class="stat-label">Obras en Seguimiento</span>
+      <span class="stat-value">{{ listadoFiltrado.length }}</span>
+    </div>
+    <div class="data-card kpi-geo">
+      <span class="stat-label">Jurisdicción</span>
+      <span class="stat-value" style="font-size: 1.4rem;">Provincia de Corrientes</span>
+    </div>
   </div>
 
-  <div class="main-layout">
+  <div class="main-layout" style="padding: 0 5% 4rem 5%; display: grid; grid-template-columns: 1fr 450px; gap: 2rem;">
     <div class="table-container">
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Expediente / Denominación de Obra</th>
-          </tr>
-        </thead>
+      <div class="table-header" style="background: #f8fafc; padding: 1.5rem; font-weight: 800; color: var(--invico-blue); border-bottom: 1px solid #e2e8f0;">
+        LISTADO DE EXPEDIENTES ACTIVOS
+      </div>
+      <table class="main-table" style="width: 100%; border-collapse: collapse;">
         <tbody>
-          <tr *ngFor="let obra of listadoFiltrado" (click)="verDetalle(obra)">
-            <td class="id-cell">#{{ obra.id }}</td>
-            <td>
-              <span style="display: block; font-weight: 600; color: #1b5e20;">
-                {{ obra.title | uppercase }}
-              </span>
+          <tr *ngFor="let obra of listadoFiltrado" 
+              (click)="verDetalle(obra)" 
+              [class.selected-row]="seleccionada?.id === obra.id"
+              style="cursor: pointer; border-bottom: 1px solid #f1f5f9;">
+            <td style="padding: 1.5rem;">
+              <div style="font-weight: 800; color: var(--invico-blue); font-family: monospace; font-size: 1rem;">#{{ obra.id }}</div>
+              <div style="font-weight: 700; font-size: 0.95rem; margin-top: 5px; color: var(--text-main);">{{ obra.title | uppercase }}</div>
+              <div style="font-size: 0.7rem; font-weight: 700; color: var(--invico-green); margin-top: 5px; text-transform: uppercase; letter-spacing: 0.05em;">Obra Pública Seleccionada</div>
             </td>
           </tr>
         </tbody>
       </table>
-      
-      <div *ngIf="listadoFiltrado.length === 0" style="padding: 40px; text-align: center; color: #888;">
-        No se encontraron expedientes que coincidan con la búsqueda.
-      </div>
     </div>
 
     <aside class="detail-panel" *ngIf="seleccionada">
-      <h3>Ficha Técnica</h3>
-      <div class="detail-content">
-        <p><strong>Número de Referencia</strong> #{{ seleccionada.id }}</p>
-        <p><strong>Nombre de la Obra</strong> {{ seleccionada.title }}</p>
-        <p><strong>Descripción e Informe</strong></p>
-        <div style="background: #f9fff9; padding: 15px; border-radius: 6px; border: 1px inset #e0eadd; font-style: italic; color: #555;">
+      <h3 style="margin: 0 0 1.5rem 0; font-size: 1.1rem; color: var(--invico-blue); text-transform: uppercase; border-bottom: 3px solid var(--invico-green); padding-bottom: 10px;">
+        Ficha Técnica
+      </h3>
+      
+      <div style="margin-bottom: 25px;">
+        <label style="font-weight: 800; font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase;">Proyecto</label>
+        <p style="font-size: 1.1rem; margin: 8px 0 0 0; font-weight: 700; color: var(--invico-blue-dark); line-height: 1.3;">
+          {{ seleccionada.title }}
+        </p>
+      </div>
+
+      <div style="margin-bottom: 30px;">
+        <label style="font-weight: 800; font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase;">Informe Técnico</label>
+        <div class="report-box" style="padding: 20px; border-radius: 12px; font-size: 0.9rem; line-height: 1.7; margin-top: 10px;">
           {{ seleccionada.body }}
         </div>
       </div>
-      <button class="btn-close" (click)="seleccionada = undefined">
-        VOLVER AL LISTADO
+
+      <button (click)="seleccionada = undefined" class="btn-invico" style="width: 100%; padding: 18px; border-radius: 12px; font-weight: 800; font-size: 0.9rem;">
+        CERRAR DETALLE
       </button>
     </aside>
   </div>
