@@ -1,8 +1,8 @@
-🏛️ INVICO - Gestión de Expedientes (Modernización Angular)
+ INVICO - Gestión de Expedientes (Modernización Angular)
 
-Este proyecto forma parte de una iniciativa de **modernización tecnológica** para el Instituto de Vivienda de Corrientes (INVICO). El objetivo principal es demostrar la capacidad de realizar una **migración incremental de software crítico**, asegurando la estabilidad del sistema y aplicando estándares de **tipado fuerte (Strong Typing)**.
+Este proyecto forma parte de una iniciativa de **modernización tecnológica** para el Instituto de Vivienda de Corrientes (INVICO). El objetivo principal es demostrar la capacidad de realizar una **migración incremental de software crítico**
 
-## 🚀 Hoja de Ruta de Migración (Migration Path)
+- Hoja de Ruta de Migración (Migration Path)
 
 El proyecto inicia en **Angular v15** y se escalará progresivamente hasta la **v21**, documentando cada cambio arquitectónico clave:
 
@@ -14,7 +14,7 @@ El proyecto inicia en **Angular v15** y se escalará progresivamente hasta la **
 | **04** | `v18.x.x` | Implementación de **Zoneless Change Detection**. | ⏳ Pendiente |
 | **05** | `v21.x.x` | Refactorización final y optimización de compilación. | ⏳ Pendiente |
 
-## 🛠️ Tecnologías Utilizadas
+- 🛠️ Tecnologías Utilizadas
 
 * **Core:** Angular 15 (Node.js v18.16.0 LTS)
 * **Lenguaje:** TypeScript (Strict Mode Activado)
@@ -22,13 +22,13 @@ El proyecto inicia en **Angular v15** y se escalará progresivamente hasta la **
 * **Estilos:** CSS3 Puro (Estructura modular)
 * **API:** JSONPlaceholder (Mocking de expedientes reales)
 
-## 📋 Características del Desarrollo
+- 📋 Características del Desarrollo
 
 1.  **Tipado Estricto:** Uso de `Interfaces` para todos los modelos de datos (Expedientes, Usuarios).
 2.  **Inyección de Dependencias:** Servicios desacoplados para la lógica de negocio y consumo de APIs.
 3.  **Separación de Responsabilidades:** Arquitectura clara entre lógica (TS), vista (HTML) y diseño (CSS).
 
-## 🔧 Instalación y Ejecución
+- 🔧 Instalación y Ejecución
 
 1.  Clonar el repositorio:
     ```bash
