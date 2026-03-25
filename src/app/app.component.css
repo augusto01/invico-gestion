@@ -1,49 +1,98 @@
 :root {
   --invico-blue: #003366;
-  --invico-blue-dark: #002244;
+  --invico-blue-dark: #001a35;
   --invico-green: #28a745;
-  --invico-bg: #eef2f5;       /* Gris azulado más oscuro para el fondo */
+  --invico-bg: #eef2f5;
   --text-main: #1e293b;
   --text-muted: #64748b;
   --white: #ffffff;
-  --glass: rgba(255, 255, 255, 0.9);
+  --border-color: #e2e8f0;
 }
 
+/* --- CONTENEDOR PRINCIPAL --- */
 .dashboard-container {
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
   background-color: var(--invico-bg);
   min-height: 100vh;
   color: var(--text-main);
 }
 
-/* --- HEADER CON PERSONALIDAD --- */
+/* --- HEADER --- */
 .header {
   background: linear-gradient(135deg, var(--invico-blue) 0%, var(--invico-blue-dark) 100%);
-  padding: 1.5rem 5%;
+  padding: 1.2rem 5%;
   border-bottom: 5px solid var(--invico-green);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: black; 
+  color: var(--invico-blue-dark);
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
-.logo-invico { 
-  height: 55px; 
+.brand-wrapper { display: flex; align-items: center; gap: 15px; }
+
+.logo-invico {
+  height: 50px;
+  display: block;
+}
+
+.header-separator {
+  width: 1px;
+  height: 35px;
+  background: rgba(255, 255, 255, 0.3);
 }
 
 .header-title h1 {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   font-weight: 800;
+  color: var(--invico-blue-dark) !important;
   margin: 0;
+  text-transform: uppercase;
   letter-spacing: -0.02em;
-  color: var(--white);
 }
 
-/* --- KPIs CON COLORES VIVOS --- */
+.header-subtitle {
+  font-size: 0.65rem;
+  font-weight: 600;
+  opacity: 0.8;
+  letter-spacing: 0.05em;
+}
+
+/* --- SECCIÓN DE BÚSQUEDA --- */
+.search-area {
+  background: var(--invico-blue-dark);
+  padding: 2.5rem 5%;
+}
+
+.search-wrapper {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.search-icon {
+  position: absolute;
+  left: 20px;
+  top: 18px;
+  color: var(--text-muted);
+  z-index: 2;
+}
+
+.search-box {
+  width: 100%;
+  height: 55px;
+  padding: 0 20px 0 55px;
+  border-radius: 15px;
+  border: none;
+  font-size: 1rem;
+  box-shadow: 0 10px 15px rgba(0,0,0,0.2);
+  outline: none;
+}
+
+/* --- KPIs --- */
 .stats-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1.5rem;
   padding: 2rem 5%;
 }
@@ -52,64 +101,177 @@
   background: var(--white);
   border-radius: 16px;
   padding: 1.5rem;
-  border: none;
-  position: relative;
-  overflow: hidden;
   box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05);
   transition: transform 0.2s;
 }
 
-/* KPI 1: Azul */
-.data-card.kpi-total {
+.kpi-total {
   background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
   border-bottom: 4px solid #0284c7;
 }
 
-/* KPI 2: Verde */
-.data-card.kpi-geo {
+.kpi-geo {
   background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
-  border-bottom: 4px solid #16a34a;
+  border-bottom: 4px solid var(--invico-green);
 }
 
 .stat-label {
-  font-size: 0.75rem;
+  color: var(--invico-blue);
   font-weight: 800;
+  font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: var(--invico-blue);
-  margin-bottom: 10px;
   display: block;
+  margin-bottom: 8px;
 }
 
 .stat-value {
-  font-size: 2.2rem;
+  font-size: 2rem;
   font-weight: 900;
   color: var(--invico-blue-dark);
 }
 
-/* --- TABLA Y DETALLES --- */
+.geo-text { font-size: 1.3rem; font-weight: 700; }
+
+/* --- TABLA --- */
+.main-layout {
+  padding: 0 5% 4rem 5%;
+  display: grid;
+  grid-template-columns: 1fr 450px;
+  gap: 2rem;
+}
+
+@media (max-width: 1100px) {
+  .main-layout { grid-template-columns: 1fr; }
+}
+
 .table-container {
   background: var(--white);
   border-radius: 16px;
-  border: 1px solid #e2e8f0;
-  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+  border: 1px solid var(--border-color);
+  overflow: hidden;
 }
 
-.selected-row td {
-  background-color: #f0fdf4 !important; /* Verde muy suave al seleccionar */
-  border-left: 6px solid var(--invico-green) !important;
+.table-header {
+  background: #f8fafc;
+  padding: 1.5rem;
+  font-weight: 800;
+  color: var(--invico-blue);
+  border-bottom: 1px solid var(--border-color);
 }
 
+.main-table { width: 100%; border-collapse: collapse; }
+
+.obra-cell { padding: 1.5rem; cursor: pointer; border-bottom: 1px solid #f1f5f9; }
+
+.obra-id {
+  font-weight: 800;
+  color: var(--invico-blue);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1rem;
+}
+
+.obra-title-row {
+  font-weight: 700;
+  font-size: 0.95rem;
+  margin-top: 5px;
+  color: var(--text-main);
+}
+
+.obra-tag {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--invico-green);
+  margin-top: 5px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.selected-row .obra-cell {
+  background-color: #f0fdf4 !important;
+  border-left: 6px solid var(--invico-green);
+}
+
+/* --- FICHA TÉCNICA --- */
 .detail-panel {
   background: var(--white);
   border-radius: 20px;
-  border: 1px solid #e2e8f0;
-  box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
   padding: 2rem;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+  height: fit-content;
+  position: sticky;
+  top: 2rem;
+}
+
+.detail-header {
+  margin: 0 0 1.5rem 0;
+  font-size: 1.1rem;
+  color: var(--invico-blue);
+  text-transform: uppercase;
+  border-bottom: 3px solid var(--invico-green);
+  padding-bottom: 10px;
+}
+
+.detail-group { margin-bottom: 25px; }
+
+.detail-label {
+  font-weight: 800;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  display: block;
+}
+
+.detail-project-name {
+  font-size: 1.1rem;
+  margin: 8px 0 0 0;
+  font-weight: 700;
+  color: var(--invico-blue-dark);
+  line-height: 1.3;
 }
 
 .report-box {
-  background: #f1f5f9; /* Gris oscuro para el reporte, descansa la vista */
-  border: 1px solid #e2e8f0;
-  color: #334155;
+  background: #f1f5f9;
+  padding: 20px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  line-height: 1.7;
+  margin-top: 10px;
+  border: 1px solid var(--border-color);
+}
+
+.btn-invico {
+  width: 100%;
+  padding: 18px;
+  border-radius: 12px;
+  background: green;
+  color: white;
+  border: none;
+  font-weight: 800;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.btn-invico:hover { opacity: 0.9; }
+
+/* --- STATUS BADGE --- */
+.status-badge {
+  background: rgba(255, 255, 255, 0.15);
+  padding: 8px 15px;
+  border-radius: 30px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--invico-green);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--invico-green);
 }
